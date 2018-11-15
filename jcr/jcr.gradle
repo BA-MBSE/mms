@@ -2,9 +2,8 @@ apply plugin: 'io.spring.convention.spring-module'
 
 dependencies {
     compile project(':core')
-
-    compile group: 'org.apache.jackrabbit', name: 'oak-core', version: '1.9.9'
-    compile group: 'org.apache.jackrabbit', name: 'oak-store-spi', version: '1.9.9'
-    compile group: 'org.apache.jackrabbit', name: 'oak-api', version: '1.9.9'
-
+    compile group: 'org.apache.jackrabbit', name: 'oak-jcr', version: '1.9.10'
+    compile group: 'org.apache.jackrabbit', name: 'oak-core', version: '1.9.10'
+    compile group: 'org.apache.jackrabbit', name: 'oak-segment-tar', version: '1.9.10'
+    compile group: 'org.apache.jackrabbit', name: 'oak-blob-cloud', version: '1.9.10'
 }
