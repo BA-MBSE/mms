@@ -1,7 +1,7 @@
 package org.openmbee.sdvc.crud.services;
 
 import org.openmbee.sdvc.crud.repositories.commit.CommitDAO;
-import org.openmbee.sdvc.crud.repositories.commit.CommitElasticDAO;
+import org.openmbee.sdvc.crud.repositories.commit.CommitClobDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class CommitService {
 
     private CommitDAO commitRepository;
-    private CommitElasticDAO commitElasticRepository;
+    private CommitClobDAO commitElasticRepository;
 
     @Autowired
     public void setCommitDao(CommitDAO commitDao) {
@@ -17,7 +17,7 @@ public class CommitService {
     }
 
     @Autowired
-    public void setCommitElasticDao(CommitElasticDAO commitElasticRepository) {
+    public void setCommitElasticDao(CommitClobDAO commitElasticRepository) {
         this.commitElasticRepository = commitElasticRepository;
     }
 

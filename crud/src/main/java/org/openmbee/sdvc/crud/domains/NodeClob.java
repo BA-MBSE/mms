@@ -7,12 +7,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "edges")
-public class Edge {
+@Table(name = "nodeclob")
+public class NodeClob {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +22,15 @@ public class Edge {
 
     @ManyToOne(fetch = FetchType.LAZY,
         cascade = CascadeType.ALL)
-    private Node parent;
+    private Node nodeId;
 
     @ManyToOne(fetch = FetchType.LAZY,
         cascade = CascadeType.ALL)
-    private Node child;
+    private Commit commitId;
 
-    @Column(columnDefinition = "smallint")
-    private EdgeType edgeType;
+    @Lob
+    @Column(name = "json", columnDefinition = "CLOB")
+    private String json;
 
     public Long getId() {
         return id;
@@ -38,27 +40,28 @@ public class Edge {
         this.id = id;
     }
 
-    public Node getParent() {
-        return parent;
+    public Node getNodeId() {
+        return nodeId;
     }
 
-    public void setParent(Node parent) {
-        this.parent = parent;
+    public void setNodeId(Node nodeId) {
+        this.nodeId = nodeId;
     }
 
-    public Node getChild() {
-        return child;
+    public Commit getCommitId() {
+        return commitId;
     }
 
-    public void setChild(Node child) {
-        this.child = child;
+    public void setCommitId(Commit commitId) {
+        this.commitId = commitId;
     }
 
-    public EdgeType getEdgeType() {
-        return edgeType;
+    public String getJson() {
+        return json;
     }
 
-    public void setEdgeType(EdgeType edgeType) {
-        this.edgeType = edgeType;
+    public void setJson(String json) {
+        this.json = json;
     }
+
 }

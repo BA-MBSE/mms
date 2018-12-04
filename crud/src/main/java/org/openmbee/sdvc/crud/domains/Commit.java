@@ -18,7 +18,7 @@ public class Commit implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    Long id;
+    private Long id;
 
     private Instant timestamp;
 

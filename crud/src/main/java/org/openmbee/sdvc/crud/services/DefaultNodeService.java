@@ -15,7 +15,7 @@ import org.openmbee.sdvc.crud.domains.CommitType;
 import org.openmbee.sdvc.crud.domains.Node;
 import org.openmbee.sdvc.crud.repositories.commit.CommitDAO;
 import org.openmbee.sdvc.crud.repositories.node.NodeDAO;
-import org.openmbee.sdvc.crud.repositories.node.NodeElasticDAO;
+import org.openmbee.sdvc.crud.repositories.node.NodeClobDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class DefaultNodeService implements NodeService {
 
     protected NodeDAO nodeRepository;
     protected CommitDAO commitRepository;
-    protected NodeElasticDAO nodeElasticRepository;
+    protected NodeClobDAO nodeClobDAO;
 
     @Autowired
     public void setNodeRepository(NodeDAO nodeRepository) {
@@ -39,8 +39,8 @@ public class DefaultNodeService implements NodeService {
     }
 
     @Autowired
-    public void setNodeElasticRepository(NodeElasticDAO nodeElasticRepository) {
-        this.nodeElasticRepository = nodeElasticRepository;
+    public void setNodeClobDAO(NodeClobDAO nodeClobDAO) {
+        this.nodeClobDAO = nodeClobDAO;
     }
 
     @Override
@@ -48,13 +48,14 @@ public class DefaultNodeService implements NodeService {
         Map<String, String> params) {
         DbContextHolder.setContext(projectId, refId);
         logger.info("params: " + params);
+        ElementsResponse res = new ElementsResponse();
+
         if (id != null) {
             logger.debug("ElementId given: ", id);
             Node node = nodeRepository.findBySysmlId(id);
             ElementJson e = new ElementJson();
             e.setId(node.getSysmlId());
             //set other stuff
-            ElementsResponse res = new ElementsResponse();
             List<ElementJson> list = new ArrayList<>();
             list.add(e);
             res.setElements(list);
@@ -62,9 +63,8 @@ public class DefaultNodeService implements NodeService {
         } else {
             logger.debug("No ElementId given");
             List<Node> nodes = nodeRepository.findAll();
-            //return ResponseEntity.ok(new ElementsResponse(nodes));
+            return res;
         }
-        return null;
     }
 
     @Override

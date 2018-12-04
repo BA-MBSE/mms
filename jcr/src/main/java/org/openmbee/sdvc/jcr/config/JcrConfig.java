@@ -1,5 +1,6 @@
 package org.openmbee.sdvc.jcr.config;
 
+import javax.jcr.Node;
 import javax.jcr.Repository;
 import org.apache.jackrabbit.oak.Oak;
 import org.springframework.context.annotation.Configuration;

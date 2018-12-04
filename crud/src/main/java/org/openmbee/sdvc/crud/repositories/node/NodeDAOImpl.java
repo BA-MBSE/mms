@@ -37,8 +37,9 @@ public class NodeDAOImpl extends BaseDAOImpl implements NodeDAO {
         if (keyHolder.getKeyList().isEmpty()) {
             return null;
         }
+
         node.setId(keyHolder.getKey().longValue());
-        return node;//findById(keyHolder.getKey().longValue());
+        return node;
     }
 
     public List<Node> saveAll(List<Node> nodes) {
